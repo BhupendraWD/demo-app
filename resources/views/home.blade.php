@@ -14,22 +14,43 @@
     @csrf
     <div class="form-group">
         <label for="name">Name</label>
-        <input type="text" name="name" class="form-control" required>
+        <input type="text" name="name" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" required>
+        @if ($errors->has('name'))
+        <span class="invalid-feedback">
+            <strong>{{ $errors->first('name') }}</strong>
+        </span>
+    @endif
     </div>
     <div class="form-group">
         <label for="email">Email</label>
-        <input type="email" name="email" class="form-control" required>
+        <input type="email" name="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" required>
+        @if ($errors->has('email'))
+        <span class="invalid-feedback">
+            <strong>{{ $errors->first('email') }}</strong>
+        </span>
+    @endif
+
 </div>
 <div class="form-group">
 <label for="phone">Phone</label>
-<input type="text" name="phone" class="form-control" required>
+<input type="text" name="phone" class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}" required>
+@if ($errors->has('phone'))
+        <span class="invalid-feedback">
+            <strong>{{ $errors->first('phone') }}</strong>
+        </span>
+    @endif
 </div>
 <div class="form-group">
 <label for="gender">Gender</label>
-<select name="gender" class="form-control" required>
+<select name="gender" class="form-control{{ $errors->has('gender') ? ' is-invalid' : '' }}" required>
 <option value="male">Male</option>
 <option value="female">Female</option>
 </select>
+@if ($errors->has('gender'))
+        <span class="invalid-feedback">
+            <strong>{{ $errors->first('gender') }}</strong>
+        </span>
+    @endif
 </div>
 <div class="form-group">
 <label>Courses</label>
