@@ -4,16 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Student;
+use Illuminate\Validation\Rule;
 
 class StudentController extends Controller
 {
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'name' => 'required',
+            'name' => 'required|string|max:255',
             'email' => 'required|email',
-            'phone' => 'required',
-            'gender' => 'required',
+            'phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
+            'gender' => ['required', Rule::in(['male', 'female', 'other'])],
         ]);
     
         $student = new Student();
